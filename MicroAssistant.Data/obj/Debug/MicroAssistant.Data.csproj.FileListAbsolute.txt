@@ -1,0 +1,11 @@
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\bin\MicroAssistant.Data.dll.config
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\bin\MicroAssistant.Data.dll
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\bin\MicroAssistant.Data.pdb
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\bin\EntityFramework.dll
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\bin\EntityFramework.SqlServer.dll
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\bin\log4net.dll
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\bin\EntityFramework.xml
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\bin\EntityFramework.SqlServer.xml
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\obj\Debug\MicroAssistant.Data.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\obj\Debug\MicroAssistant.Data.dll
+C:\Users\Administrator\documents\visual studio 2013\Projects\MicroAssistant\MicroAssistant.Data\obj\Debug\MicroAssistant.Data.pdb

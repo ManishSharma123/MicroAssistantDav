@@ -1,0 +1,5 @@
+﻿@using WebMatrix.WebData;
+@{
+    AppState["customAppName"] = "MicroAssistant";
+    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfiles", "UserId", "UserName", true);
+}

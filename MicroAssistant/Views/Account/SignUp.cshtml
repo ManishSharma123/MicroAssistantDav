@@ -1,0 +1,65 @@
+﻿@model MicroAssistant.Web.Models.RegisterModel
+@{
+    ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+<!-- /.section -->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="get_text">
+
+                <h3>Create Micro Assistant Account</h3>
+                <div class="clear" style="height:20px;"></div>
+                <div class="col-lg-3 col-md-3 col-sm-3"></div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+
+                    @using (Html.BeginForm("SignUp", "Account"))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="well">
+                            <div class="form-group">
+                                @*@Html.LabelFor(m => m.UserName, new { @class = "text" })*@
+                                @Html.Label("UserName", new { @class = "text" })
+                                @Html.TextBoxFor(model => model.UserName, new { placeholder = "Robert Smith", @class = "form-control" })
+
+
+                            </div>
+                            <div class="clear" style="height:15px;"></div>
+                            <div class="form-group">
+                                @*@Html.LabelFor(m => m.Email, new { @class = "text" })*@
+                                @Html.Label("Email", new { @class = "text" })
+                                @Html.TextBoxFor(model => model.Email, new { placeholder = "e.g., mail@demolink.com", @class = "form-control" })
+
+                            </div>
+                            <div class="clear" style="height:15px;"></div>
+                            <div class="form-group">
+                                @Html.Label("Password", new { @class = "text" })
+                                @Html.PasswordFor(model => model.Password, new { placeholder = "e.g., ********", @class = "form-control" })
+
+                            </div>
+                            <div class="clear" style="height:20px;"></div>
+
+                            <button type="submit" class="btn btn-lg button_join4">Create New Account</button>
+                            <div class="clear" style="height:40px;"></div>
+                            <p class="text">Forgot your password? <span><a href="">Reset your password.</a></span></p>
+
+                            <div class="clear" style="height:30px;"></div>
+                            <p> Already have an account?<span> <a href="Login" style="text-decoration:underline;">Log In.</a></span></p>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3"></div>
+
+
+            <div class="clear" style="height:20px;"></div>
+
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

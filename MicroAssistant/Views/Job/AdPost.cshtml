@@ -1,0 +1,153 @@
+﻿@model MicroAssistant.Web.Models.AdPostModel
+@{
+    ViewBag.Title = "Ad Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- /.section -->
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="get_text">
+
+                <h3>Post Job AD</h3>
+
+                <div class="clear" style="height:10px;"></div>
+                <div class="col-lg-3 col-md-3 col-sm-3"></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                    <h4>Welcome Robert Smith</h4>
+                    <hr>
+                    @using (Html.BeginForm("AdPost", "Job",FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-group">
+                            @Html.Label("What are you posting?", new { @class = "text" })
+                            @Html.TextBoxFor(model => model.Title, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Title)
+                        </div>
+                        <div class="clear" style="height:15px;"></div>
+
+                        <div class="form-group">
+                            @Html.Label("Select a Category", new { @class = "text" })
+                            <div class="clear"></div>
+                            <div class="col-sm-6" style="padding-left:0px;">
+
+                                @Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.Categories, "Id", "Name", Model.CategoryId), Model.SELECT, new { @Id = "DrpCategory", @name = "DrpCategory", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CategoryId)
+                            </div>
+                            <div class="col-sm-6"></div>
+                        </div>
+                        <div class="clear" style="height:15px;"></div>
+                        <div class="form-group">
+
+                            @Html.Label("Description", new { @class = "text" })
+                            <div class="clear"></div>
+                            @Html.TextAreaFor(model => model.description,  new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.description)
+                        </div>
+                        <div class="clear" style="height:15px;"></div>
+                        <div class="form-group">
+                            <div class="col-sm-3" style="padding:0;">
+                                <label for="exampleInputEmail1" class="text">Add Photo</label>
+                            </div>
+                            <div class="col-sm-3" style="padding:0;"><img src="~/images/photo.png"></div>
+                            <div class="col-sm-4" style="padding:0;">
+                                <label for="exampleInputEmail1" class="text">Add Video</label>
+                            </div>
+                            <div class="col-sm-2 " style="padding:0;"><img src="~/images/video.png"></div>
+                        </div>
+                         <div class="clear" style="height:20px;"></div>
+                         <div class="form-group">
+                            <div class="col-sm-4" style="padding:0;">
+                                <input id="Photo" name="Photo" type="file" title="JPG, PNG or GIF up to size of 300 KB." />
+                            </div>
+                            <div class="col-sm-1" style="padding:0;">&nbsp;</div>
+                            <div class="col-sm-7" style="padding:0;display:block;">
+                                <p style="color:red;">e.g., http://www.youtube.com/watch?v=gNOJWXjrNIE</p>
+                                @Html.TextBoxFor(model => model.Video, null, new { @class = "form-control", placeholder = "e.g., http://www.youtube.com/watch?v=gNOJWXjrNIE" })
+                                @Html.ValidationMessageFor(model => model.Video)    
+                            </div>
+                        </div>
+
+                        <div class="clear" style="height:20px;"></div>
+                        <div class="form-group">
+                            <div class="col-sm-3" style="padding:0;">
+                                @Html.LabelFor(model => model.Price, new { @class = "text" })
+                            </div>
+                            <div class="col-sm-2" style="padding:0;">
+                                @Html.TextBoxFor(model => model.Price, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Price)
+
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-4">
+                                <div class="checkbox">
+                                    @Html.Label("Best Offer", new { @class = "text" })
+                                    @Html.CheckBoxFor(model => model.IsBestOffer)
+                                    @Html.ValidationMessageFor(model => model.IsBestOffer)
+
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="checkbox">
+                                    @Html.Label("Free", new { @class = "text" })
+                                    @Html.CheckBoxFor(model => model.IsFree)
+                                    @Html.ValidationMessageFor(model => model.IsFree)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear" style="height:15px;"></div>
+                        <div class="form-group">
+
+                            @Html.LabelFor(model => model.Phone, new { @class = "text" })
+
+                            @Html.TextBoxFor(model => model.Phone, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Phone)
+                        </div>
+                        <div class="clear" style="height:15px;"></div>
+                        <div class="form-group">
+                            <div class="col-sm-6" style="padding-left:0;">
+
+                                @Html.LabelFor(model => model.City, new { @class = "text" })
+
+                                @Html.TextBoxFor(model => model.City, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.City)
+                            </div>
+
+                            <div class="col-sm-6" style="padding-left:0;">
+                                @Html.Label("State", new { @class = "text" })
+                                <div class="clear"></div>
+                                <div style="padding-left:0px;">
+
+                                    @Html.DropDownListFor(model => model.StateId, new SelectList(Model.States, "Id", "Name", Model.StateId), Model.SELECT, new { @Id = "DrpState", @name = "DrpState", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StateId)
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear" style="height:40px;"></div>
+                        <h5 class="text1">
+                            By Clicking on submit add, you agree to our <a href="">Terms</a> and<a href=""> Privacy Policy</a>.
+                        </h5>
+                        <div class="clear" style="height:50px;"></div>
+                        <button type="submit" class="btn btn-lg button_join4">Submit</button>
+
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3"></div>
+
+
+        <div class="clear" style="height:20px;"></div>
+
+    </div>
+</div>
+<!-- /.row -->
+<!-- /.container -->
+<!-- /.section -->
+<div class="clear" style="height:40px;"></div>
+
+
+

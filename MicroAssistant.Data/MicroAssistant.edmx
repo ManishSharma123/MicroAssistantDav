@@ -1,0 +1,817 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MicroAssistantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateUpdated" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MicroAssistant.dbo.Job' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="postId" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="CountryId" />
+            <PropertyRef Name="PublishDate" />
+            <PropertyRef Name="ClosingDate" />
+            <PropertyRef Name="IsbestOffer" />
+            <PropertyRef Name="IsFree" />
+            <PropertyRef Name="IsPublish" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="JobHits" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="DateUpdated" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="postId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="text" />
+          <Property Name="blurbText" Type="varchar" MaxLength="700" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Video" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="CategoryId" Type="bigint" Nullable="false" />
+          <Property Name="StateId" Type="bigint" Nullable="false" />
+          <Property Name="CountryId" Type="bigint" Nullable="false" />
+          <Property Name="PublishDate" Type="datetime" Nullable="false" />
+          <Property Name="ClosingDate" Type="datetime" Nullable="false" />
+          <Property Name="IsbestOffer" Type="int" Nullable="false" />
+          <Property Name="IsFree" Type="int" Nullable="false" />
+          <Property Name="IsPublish" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="int" Nullable="false" />
+          <Property Name="JobHits" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="remark" Type="varchar" MaxLength="500" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginHistories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="15" />
+          <Property Name="LoginDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MicroAssistant.dbo.MicroAssistant_Services' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MicroAssistant_Services">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="DateUpdated" />
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="CountryId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="text" />
+          <Property Name="BlurbText" Type="varchar" MaxLength="500" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="CategoryId" Type="bigint" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="bigint" Nullable="false" />
+          <Property Name="CountryId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="remark" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MicroAssistant.dbo.RegisteredUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RegisteredUsers">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="DateUpdated" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="IsVerified" />
+          </Key>
+          <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="usrPassword" Type="varchar" MaxLength="50" />
+          <Property Name="usrEmail" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+          <Property Name="Website" Type="varchar" MaxLength="150" />
+          <Property Name="usrImage" Type="varchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="int" Nullable="false" />
+          <Property Name="IsVerified" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="StateCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CoutryId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfiles">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ProviderUserId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_RoleId">
+          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_Job_Post" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="postId" Type="bigint" Mode="In" />
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="text" Mode="In" />
+          <Parameter Name="blurbText" Type="varchar" Mode="In" />
+          <Parameter Name="Photo" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="Video" Type="varchar" Mode="In" />
+          <Parameter Name="Price" Type="decimal" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="CategoryId" Type="bigint" Mode="In" />
+          <Parameter Name="StateId" Type="bigint" Mode="In" />
+          <Parameter Name="IsbestOffer" Type="int" Mode="In" />
+          <Parameter Name="IsFree" Type="int" Mode="In" />
+          <Parameter Name="DateCreated" Type="datetime" Mode="In" />
+          <Parameter Name="DateUpdated" Type="datetime" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+          <Parameter Name="remark" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Login_Histories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="IPAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="LoginDateTime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_MicroAssistant_Services_Post" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="text" Mode="In" />
+          <Parameter Name="BlurbText" Type="varchar" Mode="In" />
+          <Parameter Name="Photo" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="CategoryId" Type="bigint" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="StateId" Type="bigint" Mode="In" />
+          <Parameter Name="CountryId" Type="bigint" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+          <Parameter Name="remark" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Registered_User_Activation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="strVal" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Resitered_User_Detail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_Resitered_Users_Edition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="bigint" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="usrPassword" Type="varchar" Mode="In" />
+          <Parameter Name="usrEmail" Type="varchar" Mode="In" />
+          <Parameter Name="usrImage" Type="varchar" Mode="In" />
+          <Parameter Name="Website" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="MicroAssistantModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginHistories" EntityType="Self.LoginHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfiles" EntityType="Self.UserProfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Job].[postId] AS [postId], 
+    [Job].[Title] AS [Title], 
+    [Job].[Description] AS [Description], 
+    [Job].[blurbText] AS [blurbText], 
+    [Job].[Photo] AS [Photo], 
+    [Job].[Video] AS [Video], 
+    [Job].[Price] AS [Price], 
+    [Job].[Phone] AS [Phone], 
+    [Job].[City] AS [City], 
+    [Job].[CategoryId] AS [CategoryId], 
+    [Job].[StateId] AS [StateId], 
+    [Job].[CountryId] AS [CountryId], 
+    [Job].[PublishDate] AS [PublishDate], 
+    [Job].[ClosingDate] AS [ClosingDate], 
+    [Job].[IsbestOffer] AS [IsbestOffer], 
+    [Job].[IsFree] AS [IsFree], 
+    [Job].[IsPublish] AS [IsPublish], 
+    [Job].[IsActive] AS [IsActive], 
+    [Job].[IsDeleted] AS [IsDeleted], 
+    [Job].[JobHits] AS [JobHits], 
+    [Job].[DateCreated] AS [DateCreated], 
+    [Job].[DateUpdated] AS [DateUpdated], 
+    [Job].[CreatedBy] AS [CreatedBy], 
+    [Job].[remark] AS [remark], 
+    [Job].[UserId] AS [UserId]
+    FROM [dbo].[Job] AS [Job]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MicroAssistant_Services" EntityType="Self.MicroAssistant_Services" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MicroAssistant_Services].[Id] AS [Id], 
+    [MicroAssistant_Services].[Title] AS [Title], 
+    [MicroAssistant_Services].[Description] AS [Description], 
+    [MicroAssistant_Services].[BlurbText] AS [BlurbText], 
+    [MicroAssistant_Services].[Photo] AS [Photo], 
+    [MicroAssistant_Services].[CategoryId] AS [CategoryId], 
+    [MicroAssistant_Services].[IsActive] AS [IsActive], 
+    [MicroAssistant_Services].[IsDeleted] AS [IsDeleted], 
+    [MicroAssistant_Services].[DateCreated] AS [DateCreated], 
+    [MicroAssistant_Services].[DateUpdated] AS [DateUpdated], 
+    [MicroAssistant_Services].[City] AS [City], 
+    [MicroAssistant_Services].[StateId] AS [StateId], 
+    [MicroAssistant_Services].[CountryId] AS [CountryId], 
+    [MicroAssistant_Services].[CreatedBy] AS [CreatedBy], 
+    [MicroAssistant_Services].[UserId] AS [UserId], 
+    [MicroAssistant_Services].[remark] AS [remark]
+    FROM [dbo].[MicroAssistant_Services] AS [MicroAssistant_Services]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RegisteredUsers" EntityType="Self.RegisteredUsers" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RegisteredUsers].[UserID] AS [UserID], 
+    [RegisteredUsers].[UserName] AS [UserName], 
+    [RegisteredUsers].[usrPassword] AS [usrPassword], 
+    [RegisteredUsers].[usrEmail] AS [usrEmail], 
+    [RegisteredUsers].[IsActive] AS [IsActive], 
+    [RegisteredUsers].[DateCreated] AS [DateCreated], 
+    [RegisteredUsers].[DateUpdated] AS [DateUpdated], 
+    [RegisteredUsers].[Website] AS [Website], 
+    [RegisteredUsers].[usrImage] AS [usrImage], 
+    [RegisteredUsers].[IsDeleted] AS [IsDeleted], 
+    [RegisteredUsers].[IsVerified] AS [IsVerified]
+    FROM [dbo].[RegisteredUsers] AS [RegisteredUsers]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MicroAssistantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LoginHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="LoginDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RegisteredUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="DateUpdated" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="IsVerified" />
+          </Key>
+          <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usrPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usrEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Website" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usrImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
+          <Property Name="IsVerified" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MicroAssistantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LoginHistories" EntityType="Self.LoginHistory" />
+          <EntitySet Name="RegisteredUsers" EntityType="Self.RegisteredUser" />
+          <FunctionImport Name="SP_Login_Histories">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="IPAddress" Mode="In" Type="String" />
+            <Parameter Name="LoginDateTime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Resitered_User_Detail" ReturnType="Collection(MicroAssistantModel.SP_Resitered_User_Detail_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Resitered_Users_Edition">
+            <Parameter Name="UserID" Mode="In" Type="Int64" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="usrPassword" Mode="In" Type="String" />
+            <Parameter Name="usrEmail" Mode="In" Type="String" />
+            <Parameter Name="usrImage" Mode="In" Type="String" />
+            <Parameter Name="Website" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="UserProfiles" EntityType="MicroAssistantModel.UserProfile" />
+          <EntitySet Name="webpages_Membership" EntityType="MicroAssistantModel.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="MicroAssistantModel.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="MicroAssistantModel.webpages_Roles" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="MicroAssistantModel.webpages_UsersInRoles" />
+          <AssociationSet Name="fk_RoleId" Association="MicroAssistantModel.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <FunctionImport Name="SP_Registered_User_Activation">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="strVal" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Categories" EntityType="MicroAssistantModel.Category" />
+          <EntitySet Name="States" EntityType="MicroAssistantModel.State" />
+          <EntitySet Name="MicroAssistant_Services" EntityType="MicroAssistantModel.MicroAssistant_Services" />
+          <EntitySet Name="Jobs" EntityType="MicroAssistantModel.Job" />
+          <FunctionImport Name="SP_Job_Post">
+            <Parameter Name="postId" Mode="In" Type="Int64" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="blurbText" Mode="In" Type="String" />
+            <Parameter Name="Photo" Mode="In" Type="Binary" />
+            <Parameter Name="Video" Mode="In" Type="String" />
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="CategoryId" Mode="In" Type="Int64" />
+            <Parameter Name="StateId" Mode="In" Type="Int64" />
+            <Parameter Name="IsbestOffer" Mode="In" Type="Int32" />
+            <Parameter Name="IsFree" Mode="In" Type="Int32" />
+            <Parameter Name="DateCreated" Mode="In" Type="DateTime" />
+            <Parameter Name="DateUpdated" Mode="In" Type="DateTime" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="remark" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MicroAssistant_Services_Post">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="BlurbText" Mode="In" Type="String" />
+            <Parameter Name="Photo" Mode="In" Type="Binary" />
+            <Parameter Name="CategoryId" Mode="In" Type="Int64" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="StateId" Mode="In" Type="Int64" />
+            <Parameter Name="CountryId" Mode="In" Type="Int64" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="remark" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_Resitered_User_Detail_Result">
+          <Property Type="Int64" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usrPassword" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usrEmail" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IsActive" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DateUpdated" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="usrImage" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IsDeleted" Nullable="false" />
+          <Property Type="Int32" Name="IsVerified" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsConfirmed" Type="Boolean" />
+          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="webpages_UsersInRoles" Relationship="MicroAssistantModel.fk_RoleId" FromRole="webpages_Roles" ToRole="webpages_UsersInRoles" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="webpages_Roles" Relationship="MicroAssistantModel.fk_RoleId" FromRole="webpages_UsersInRoles" ToRole="webpages_Roles" />
+        </EntityType>
+        <Association Name="fk_RoleId">
+          <End Type="MicroAssistantModel.webpages_Roles" Role="webpages_Roles" Multiplicity="1" />
+          <End Type="MicroAssistantModel.webpages_UsersInRoles" Role="webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StateCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CoutryId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MicroAssistant_Services">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="DateUpdated" />
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="CountryId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BlurbText" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CategoryId" Type="Int64" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StateId" Type="Int64" Nullable="false" />
+          <Property Name="CountryId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="postId" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="CountryId" />
+            <PropertyRef Name="PublishDate" />
+            <PropertyRef Name="ClosingDate" />
+            <PropertyRef Name="IsbestOffer" />
+            <PropertyRef Name="IsFree" />
+            <PropertyRef Name="IsPublish" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="JobHits" />
+            <PropertyRef Name="DateCreated" />
+            <PropertyRef Name="DateUpdated" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="postId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="blurbText" Type="String" MaxLength="700" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Video" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int64" Nullable="false" />
+          <Property Name="StateId" Type="Int64" Nullable="false" />
+          <Property Name="CountryId" Type="Int64" Nullable="false" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClosingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsbestOffer" Type="Int32" Nullable="false" />
+          <Property Name="IsFree" Type="Int32" Nullable="false" />
+          <Property Name="IsPublish" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
+          <Property Name="JobHits" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MicroAssistantModelStoreContainer" CdmEntityContainer="MicroAssistantEntities">
+          <EntitySetMapping Name="LoginHistories">
+            <EntityTypeMapping TypeName="MicroAssistantModel.LoginHistory">
+              <MappingFragment StoreEntitySet="LoginHistories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="LoginDateTime" ColumnName="LoginDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisteredUsers">
+            <EntityTypeMapping TypeName="MicroAssistantModel.RegisteredUser">
+              <MappingFragment StoreEntitySet="RegisteredUsers">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="usrPassword" ColumnName="usrPassword" />
+                <ScalarProperty Name="usrEmail" ColumnName="usrEmail" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="usrImage" ColumnName="usrImage" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Login_Histories" FunctionName="MicroAssistantModel.Store.SP_Login_Histories" />
+          <FunctionImportMapping FunctionImportName="SP_Resitered_User_Detail" FunctionName="MicroAssistantModel.Store.SP_Resitered_User_Detail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MicroAssistantModel.SP_Resitered_User_Detail_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="usrPassword" ColumnName="usrPassword" />
+                <ScalarProperty Name="usrEmail" ColumnName="usrEmail" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="usrImage" ColumnName="usrImage" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Resitered_Users_Edition" FunctionName="MicroAssistantModel.Store.SP_Resitered_Users_Edition" />
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="MicroAssistantModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfiles">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="MicroAssistantModel.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_OAuthMembership">
+            <EntityTypeMapping TypeName="MicroAssistantModel.webpages_OAuthMembership">
+              <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="MicroAssistantModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_UsersInRoles">
+            <EntityTypeMapping TypeName="MicroAssistantModel.webpages_UsersInRoles">
+              <MappingFragment StoreEntitySet="webpages_UsersInRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Registered_User_Activation" FunctionName="MicroAssistantModel.Store.SP_Registered_User_Activation" />
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="MicroAssistantModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="MicroAssistantModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CoutryId" ColumnName="CoutryId" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MicroAssistant_Services">
+            <EntityTypeMapping TypeName="MicroAssistantModel.MicroAssistant_Services">
+              <MappingFragment StoreEntitySet="MicroAssistant_Services">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="BlurbText" ColumnName="BlurbText" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="MicroAssistantModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="JobHits" ColumnName="JobHits" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsPublish" ColumnName="IsPublish" />
+                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
+                <ScalarProperty Name="IsbestOffer" ColumnName="IsbestOffer" />
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Video" ColumnName="Video" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="blurbText" ColumnName="blurbText" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="postId" ColumnName="postId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Job_Post" FunctionName="MicroAssistantModel.Store.SP_Job_Post" />
+          <FunctionImportMapping FunctionImportName="SP_MicroAssistant_Services_Post" FunctionName="MicroAssistantModel.Store.SP_MicroAssistant_Services_Post" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

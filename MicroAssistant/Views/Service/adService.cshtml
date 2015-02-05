@@ -1,0 +1,87 @@
+﻿@model MicroAssistant.Web.Models.AdServiceModel
+@{
+    ViewBag.Title = "Ad Service";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="get_text">
+
+                <h3>Post Ad Service</h3>
+
+                <div class="clear" style="height:10px;"></div>
+                <div class="col-lg-3 col-md-3 col-sm-3"></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                    <h4>Welcome Robert Smith</h4>
+                    <hr>
+                    @using (Html.BeginForm("AdService", "Service", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                         @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="form-group">
+                            @Html.Label("What are you posting?", new { @class = "text" })
+                            @Html.TextBoxFor(model => model.Title, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Title)
+                        </div>
+                        <div class="clear" style="height:15px;"></div>
+                        <div class="form-group">
+                            <div class="col-sm-6" style="padding:0px;">
+                                @Html.Label("Select a Category", new { @class = "text" })
+                                @Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.Categories, "Id", "Name", Model.CategoryId), Model.SELECT, new { @Id = "DrpCategory", @name = "DrpCategory", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CategoryId)
+
+                            </div>
+                            <div class="col-sm-1">&nbsp;</div>
+                            <div class="col-sm-5">
+                                @Html.Label("Add Photo", new { @class = "text" })
+                                <input type="file" name="Photo" id="Photo" title="Upload JPG, GIF  or PNG files" onchange='return validate();' /><br /><br />
+                            </div>
+
+                        </div>
+                        <div class="clear" style="height:0px;"></div>
+                        <div class="form-group">
+                            @Html.Label("Description", new { @class = "text" })
+                            <div class="clear"></div>
+                            @Html.TextAreaFor(model => model.description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.description)
+                        </div>
+                        <div class="clear" style="height:15px;"></div>
+                        <div class="form-group">
+                            <div class="col-sm-6" style="padding-left:0;">
+                                @Html.LabelFor(model => model.City, new { @class = "text" })
+
+                                @Html.TextBoxFor(model => model.City, null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.City)
+                            </div>
+
+                            <div class="col-sm-6" style="padding-left:0;">
+                                @Html.Label("State", new { @class = "text" })
+                                <div class="clear"></div>
+                                <div style="padding-left:0px;">
+                                    @Html.DropDownListFor(model => model.StateId, new SelectList(Model.States, "Id", "Name", Model.StateId), Model.SELECT, new { @Id = "DrpState", @name = "DrpState", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StateId)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear" style="height:40px;"></div>
+                        <h5 class="text1"> By Clicking on submit add, you agree to our <a href="">Terms</a> and<a href=""> Privacy Policy</a>.</h5>
+                        <div class="clear" style="height:50px;"></div>
+                        <button type="submit" class="btn btn-lg button_join4">Submit</button>
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3"></div>
+
+
+            <div class="clear" style="height:20px;"></div>
+
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+

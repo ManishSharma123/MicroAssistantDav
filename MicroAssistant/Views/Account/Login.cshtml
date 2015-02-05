@@ -1,0 +1,71 @@
+﻿@model MicroAssistant.Web.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="get_text">
+
+                <h3>Log in to Micro Assistant</h3>
+                <div class="clear" style="height:20px;"></div>
+                <div class="col-lg-3 col-md-3 col-sm-3"></div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+
+                    @using (Html.BeginForm("Login", "Account"))
+                    {
+                        <div class="well">
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true)
+                            <span style="color:red;">@TempData["LoginMessage"]</span>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserName, new { @class = "text" })
+
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "e.g., mail@demolink.com" })
+                                @Html.ValidationMessageFor(m => m.UserName)
+
+                            </div>
+                            <div class="clear" style="height:15px;"></div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password, new { @class = "text" })
+
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "e.g., ********" })
+                                @Html.ValidationMessageFor(m => m.Password)
+
+                            </div>
+                            <div class="clear" style="height:15px;"></div>
+                            <div class="form-group">
+
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe, new { @class = "text" })
+
+                            </div>
+
+                            <div class="clear" style="height:20px;"></div>
+
+                            <button type="submit" class="btn btn-lg button_join4">Log in</button>
+                            <div class="clear" style="height:40px;"></div>
+                            <p class="text">Forgot your password? <span><a href="">Reset your password.</a></span></p>
+
+                            <div class="clear" style="height:30px;"></div>
+                            <p> Don't have an account?<span> <a href="SignUp" style="text-decoration:underline;">Create Micro Assistant account.</a></span></p>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3"></div>
+
+
+            <div class="clear" style="height:20px;"></div>
+
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
